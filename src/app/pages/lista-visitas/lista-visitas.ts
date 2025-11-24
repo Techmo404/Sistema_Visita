@@ -25,7 +25,7 @@ export class ListaVisitasComponent implements OnInit {
       next: (data) => {
         console.log("BACKEND:", data);
 
-        this.visitas = data;
+        this.visitas = data.results;
         this.cdr.detectChanges();
         console.log("VISITAS ASIGNADAS:", this.visitas);
       },

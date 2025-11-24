@@ -1,0 +1,54 @@
+.visitas-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  background: #a0c4ff; /* azul amigable de fondo */
+  padding: 2rem 0;
+  font-family: 'Arial', sans-serif;
+}
+
+.visitas-box {
+  width: 420px;
+  padding: 30px;
+  background: linear-gradient(to bottom, #cce0ff, #ffffff); /* azul suave hacia blanco */
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.visitas-box:hover {
+  transform: translateY(-3px);
+}
+
+.visitas-box h1 {
+  margin-bottom: 25px;
+  font-size: 28px;
+  color: #333;
+  text-shadow: 1px 1px 2px #fff;
+}
+
+.visita-card {
+  text-align: left;
+  background: #e6f0ff; /* azul pastel para cada tarjeta */
+  padding: 18px 20px;
+  margin-bottom: 15px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.visita-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+}
+
+.visita-card p {
+  margin: 6px 0;
+  color: #333;
+}
+
+.visita-card p strong {
+  color: #222;
+}

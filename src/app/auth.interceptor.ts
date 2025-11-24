@@ -3,9 +3,15 @@ import { inject } from '@angular/core';
 import { AuthService } from './auth.service';
 
 export const AuthInterceptor: HttpInterceptorFn = (req, next) => {
-
   const authService = inject(AuthService);
+
+  // No agregar token al login
+  if (req.url.includes('/api/token/')) {
+    return next(req);
+  }
+
   const token = authService.getAccessToken();
+  console.log("Interceptor ejecutado, token:", token);
 
   if (token) {
     const authReq = req.clone({
@@ -16,3 +22,5 @@ export const AuthInterceptor: HttpInterceptorFn = (req, next) => {
 
   return next(req);
 };
+
+
