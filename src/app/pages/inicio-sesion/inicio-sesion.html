@@ -1,13 +1,42 @@
-<h1>Login</h1>
+<div class="login-container">
+  <div class="login-box">
 
-<form (ngSubmit)="login()">
-  <label>Usuario:</label>
-  <input [(ngModel)]="username" name="username" required><br>
+    <h2>Iniciar Sesión</h2>
+    <p class="subtitle">Accede para continuar</p>
 
-  <label>Contraseña:</label>
-  <input [(ngModel)]="password" name="password" type="password" required><br>
+    <form (ngSubmit)="login()" class="form">
 
-  <button type="submit">Iniciar sesión</button>
-</form>
+      <div class="input-group">
+        <label>Usuario</label>
+        <input type="text"
+               [(ngModel)]="username"
+               name="username"
+               required>
+      </div>
+
+      <div class="input-group">
+        <label>Contraseña</label>
+
+        <div class="password-wrapper">
+          <input [type]="showPassword ? 'text' : 'password'"
+                 [(ngModel)]="password"
+                 name="password"
+                 required>
+
+          <svg class="eye-icon" (click)="togglePasswordVisibility()"
+               xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+               viewBox="0 0 24 24" fill="none" stroke="#666"
+               stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+        </div>
+      </div>
+
+      <button class="btn" type="submit">Iniciar Sesión</button>
+
+    </form>
+  </div>
+</div>
 
 
