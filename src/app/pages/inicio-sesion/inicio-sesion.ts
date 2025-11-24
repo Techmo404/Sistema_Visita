@@ -23,7 +23,7 @@ export class InicioSesionComponent {
   login() {
     this.authService.login(this.username, this.password).subscribe({
       next: data => {
-        this.authService.saveTokens(data.access, data.refresh);
+        this.authService.getAccessToken()?.trim();
         alert('Inicio de sesión exitoso');
         this.router.navigate(['/visitas']);
       },

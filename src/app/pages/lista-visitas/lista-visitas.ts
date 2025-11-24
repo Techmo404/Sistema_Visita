@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { VisitaService } from '../../visita.service';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-lista-visitas',
@@ -9,21 +10,23 @@ import { CommonModule } from '@angular/common';
   templateUrl: './lista-visitas.html',
   styleUrls: ['./lista-visitas.css']
 })
+
 export class ListaVisitasComponent implements OnInit {
 
   visitas: any[] = [];
   error = '';
 
-  constructor(private visitaService: VisitaService) {}
+  constructor(private visitaService: VisitaService,
+  private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit() {
     this.visitaService.getVisitas().subscribe({
       next: (data) => {
         console.log("BACKEND:", data);
 
-        // 👇 ESTA ES LA LÍNEA CLAVE
-        this.visitas = data.results;
-
+        this.visitas = data;
+        this.cdr.detectChanges();
         console.log("VISITAS ASIGNADAS:", this.visitas);
       },
       error: (err) => {
