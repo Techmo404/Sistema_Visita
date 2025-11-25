@@ -1,17 +1,26 @@
-// src/app/pages/crear-visita/crear-visita.ts
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { VisitaService, Visita } from '../../visita.service';
 
 @Component({
   selector: 'app-crear-visita',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],  // 👈 AGREGADO
   templateUrl: './crear-visita.html',
   styleUrls: ['./crear-visita.css']
 })
 export class CrearVisitaComponent {
+
+  areas = [
+    "Urgencias",
+    "Pediatría",
+    "Cardiología",
+    "Dermatología",
+    "Radiología",
+    "Traumatología"
+  ];
 
   visita: Visita = {
     nombre: '',
@@ -19,13 +28,14 @@ export class CrearVisitaComponent {
     motivo_visita: '',
     hora_entrada: '09:00',
     hora_salida: '09:30',
-    fecha: new Date().toISOString().slice(0,10)
+    fecha: new Date().toISOString().slice(0,10),
+    area: '',
+    doctor: ''
   };
 
   constructor(private visitaService: VisitaService, private router: Router) {}
 
   crear() {
-    // Validaciones simples
     if (!this.visita.nombre || !this.visita.rut) {
       alert('Nombre y RUT son obligatorios');
       return;
@@ -36,10 +46,7 @@ export class CrearVisitaComponent {
         alert('Visita creada');
         this.router.navigate(['/visitas']);
       },
-      error: (err) => {
-        console.error(err);
-        alert('Error al crear visita');
-      }
+      error: () => alert('Error al crear visita')
     });
   }
 

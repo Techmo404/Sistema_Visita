@@ -19,16 +19,21 @@ export class ListaVisitasComponent implements OnInit {
   visitas: any[] = [];
   visitasFiltradas: any[] = [];
 
+  // FILTROS
   filtroNombre = '';
   filtroRut = '';
   filtroFecha = '';
+  filtroArea = '';
+  filtroDoctor = '';
 
   mostrarGrafico = false;
   chart: any;
 
-  constructor(private visitaService: VisitaService,
-              private cdr: ChangeDetectorRef,
-              private router: Router) {}
+  constructor(
+    private visitaService: VisitaService,
+    private cdr: ChangeDetectorRef,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.cargar();
@@ -41,9 +46,7 @@ export class ListaVisitasComponent implements OnInit {
         this.visitasFiltradas = [...this.visitas];
         this.cdr.detectChanges();
       },
-      error: () => {
-        console.error("Error al cargar visitas");
-      }
+      error: () => console.error("Error al cargar visitas")
     });
   }
 
@@ -52,7 +55,11 @@ export class ListaVisitasComponent implements OnInit {
       const cumpleNombre = v.nombre?.toLowerCase().includes(this.filtroNombre.toLowerCase());
       const cumpleRut = v.rut?.toLowerCase().includes(this.filtroRut.toLowerCase());
       const cumpleFecha = this.filtroFecha ? v.fecha === this.filtroFecha : true;
-      return cumpleNombre && cumpleRut && cumpleFecha;
+      const cumpleArea = v.area?.toLowerCase().includes(this.filtroArea.toLowerCase());
+      const cumpleDoctor = v.doctor?.toLowerCase().includes(this.filtroDoctor.toLowerCase());
+      
+
+      return cumpleNombre && cumpleRut && cumpleFecha && cumpleArea && cumpleDoctor;
     });
   }
 
@@ -65,16 +72,22 @@ export class ListaVisitasComponent implements OnInit {
 
   generarGrafico() {
     if (this.chart) this.chart.destroy();
+
     const dias = ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"];
     const conteo = [0,0,0,0,0,0,0];
+
     this.visitas.forEach(v => {
       const d = new Date(v.fecha).getDay();
-      conteo[d === 0 ? 6 : d - 1]++; // ajuste
+      conteo[d === 0 ? 6 : d - 1]++;
     });
+
     const ctx = document.getElementById('graficoSemanal') as any;
     this.chart = new Chart(ctx, {
       type: 'bar',
-      data: { labels: dias, datasets: [{ label: 'Visitas por día', data: conteo }] }
+      data: {
+        labels: dias,
+        datasets: [{ label: 'Visitas por día', data: conteo }]
+      }
     });
   }
 
@@ -88,6 +101,7 @@ export class ListaVisitasComponent implements OnInit {
 
   eliminarVisita(id: number) {
     if (!confirm('¿Eliminar esta visita?')) return;
+
     this.visitaService.eliminarVisita(id).subscribe({
       next: () => {
         this.visitas = this.visitas.filter(v => v.id !== id);

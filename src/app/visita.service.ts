@@ -8,10 +8,15 @@ export interface Visita {
   nombre: string;
   rut: string;
   motivo_visita: string;
-  hora_entrada: string; // "HH:MM:SS" o "HH:MM"
+  hora_entrada: string;
   hora_salida: string;
-  fecha: string; // "YYYY-MM-DD"
+  fecha: string;
+
+
+  area?: string;
+  doctor?: string;
 }
+
 
 @Injectable({
   providedIn: 'root'

@@ -13,6 +13,14 @@
     <label>Motivo</label>
     <textarea [(ngModel)]="visita.motivo_visita" name="motivo_visita"></textarea>
 
+    <label>Área</label>
+    <select [(ngModel)]="visita.area" name="area" required>
+      <option value="" disabled selected>Seleccione un área</option>
+      <option *ngFor="let a of areas" [value]="a">{{ a }}</option>
+    </select>
+
+    <label>Doctor:</label>
+    <input type="text" [(ngModel)]="visita.doctor"name="doctor" required />
     <div class="h-row">
       <div>
         <label>Hora entrada</label>
