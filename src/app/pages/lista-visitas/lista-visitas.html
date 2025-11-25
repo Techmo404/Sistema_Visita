@@ -1,15 +1,65 @@
+<!-- HEADER PROFESIONAL -->
+<header class="header-container">
+  <div class="header-content">
+    <img src="https://i.pinimg.com/1200x/d0/9e/55/d09e55b834a5a146230225e6025b8ffc.jpg" alt="Logo Hospital" class="logo-hospital">
 
-<h1>Listado de Visitas</h1>
+    <h1 class="titulo">Sistema de Visitas</h1>
+  </div>
+</header>
 
+<div class="pagina-wrapper">
 
+  <!-- FILTROS -->
+  <div class="filtros-container">
 
-<div *ngFor="let v of visitas">
-  <h2>{{ v.nombre }}</h2>
-  <p> RUT: {{ v.rut }}</p>
-  <p> Motivo: {{ v.motivo_visita }}</p>
-  <p> Entrada: {{ v.hora_entrada }}</p>
-  <p> Salida: {{ v.hora_salida }}</p>
-  <p> Fecha: {{ v.fecha }}</p>
-  <hr>
-  <p></p>
-</div>
+    <input type="text"
+           placeholder="Buscar por nombre..."
+           [(ngModel)]="filtroNombre"
+           (input)="aplicarFiltros()"
+           class="input-field">
+
+    <input type="text"
+           placeholder="Buscar por RUT..."
+           [(ngModel)]="filtroRut"
+           (input)="aplicarFiltros()"
+           class="input-field">
+
+    <input type="date"
+           [(ngModel)]="filtroFecha"
+           (change)="aplicarFiltros()"
+           class="input-field">
+
+    <button class="btn-grafico" (click)="toggleGrafico()">
+      📊 Ver gráfico semanal
+    </button>
+  </div>
+
+  <!-- GRAFICO -->
+  <div *ngIf="mostrarGrafico" class="grafico-box">
+    <canvas id="graficoSemanal"></canvas>
+  </div>
+
+  <!-- LISTA -->
+  <div class="visitas-container">
+    <div class="visitas-box">
+
+      <div *ngIf="visitasFiltradas.length === 0" class="empty-msg">
+        No se encontraron visitas.
+      </div>
+
+      <div class="visita-card" *ngFor="let v of visitasFiltradas">
+        <h3>{{ v.nombre }}</h3>
+
+        <div class="visita-info">
+          <p><strong>RUT:</strong> {{ v.rut }}</p>
+          <p><strong>Motivo:</strong> {{ v.motivo_visita }}</p>
+          <p><strong>Entrada:</strong> {{ v.hora_entrada }}</p>
+          <p><strong>Salida:</strong> {{ v.hora_salida }}</p>
+          <p><strong>Fecha:</strong> {{ v.fecha }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div> <!-- FIN WRAPPER -->
+
