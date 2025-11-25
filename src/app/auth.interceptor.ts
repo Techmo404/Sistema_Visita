@@ -5,7 +5,7 @@ import { AuthService } from './auth.service';
 export const AuthInterceptor: HttpInterceptorFn = (req, next) => {
   const authService = inject(AuthService);
 
-  // No agregar token al login
+
   if (req.url.includes('/api/token/')) {
     return next(req);
   }
