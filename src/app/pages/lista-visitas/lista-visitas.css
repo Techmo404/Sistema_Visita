@@ -1,0 +1,52 @@
+.visitas-container {
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+}
+
+.visitas-box {
+  width: 90%;
+  max-width: 800px;
+}
+
+.visitas-box h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 26px;
+  font-weight: bold;
+  color: #333;
+}
+
+.visita-card {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.visita-card:hover {
+  transform: scale(1.01);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+}
+
+.visita-card h3 {
+  margin: 0 0 10px 0;
+  color: #2c3e50;
+  font-size: 20px;
+}
+
+.visita-info p {
+  margin: 3px 0;
+  font-size: 15px;
+}
+
+.empty-msg {
+  text-align: center;
+  padding: 20px;
+  background: #f4f4f4;
+  border-radius: 10px;
+  font-style: italic;
+  color: #666;
+}

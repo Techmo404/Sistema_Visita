@@ -14,7 +14,7 @@ export class InicioSesionComponent {
 
   username = '';
   password = '';
-  showPassword = false;   
+  showPassword = false;
 
   constructor(
     private authService: AuthService,
@@ -27,7 +27,8 @@ export class InicioSesionComponent {
 
   login() {
     this.authService.login(this.username, this.password).subscribe({
-      next: () => {
+      next: (response) => {
+        this.authService.saveTokens(response.access, response.refresh);
         alert('Inicio de sesión exitoso');
         this.router.navigate(['/visitas']);
       },

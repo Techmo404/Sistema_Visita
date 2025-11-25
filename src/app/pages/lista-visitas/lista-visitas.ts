@@ -21,18 +21,21 @@ export class ListaVisitasComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.visitaService.getVisitas().subscribe({
-      next: (data) => {
-        console.log("BACKEND:", data);
+  this.visitaService.getVisitas().subscribe({
+    next: (data) => {
+      console.log("BACKEND:", data);
 
-        this.visitas = data;
-        this.cdr.detectChanges();
-        console.log("VISITAS ASIGNADAS:", this.visitas);
-      },
-      error: (err) => {
-        this.error = "Error al cargar visitas";
-        console.error(err);
-      }
-    });
-  }
+      // FIX: El backend devuelve un array directo
+      this.visitas = data;
+
+      this.cdr.detectChanges();
+      console.log("VISITAS ASIGNADAS:", this.visitas);
+    },
+    error: (err) => {
+      this.error = "Error al cargar visitas";
+      console.error(err);
+    }
+  });
+}
+
 }

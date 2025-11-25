@@ -1,16 +1,22 @@
+<div class="visitas-container">
+  <div class="visitas-box">
+    <h2>Listado de Visitas</h2>
 
-<h1>Listado de Visitas</h1>
+    <div *ngIf="visitas.length === 0" class="empty-msg">
+      No hay visitas registradas.
+    </div>
 
+    <div *ngFor="let v of visitas" class="visita-card">
+      <h3>{{ v.nombre }}</h3>
 
+      <div class="visita-info">
+        <p><strong>RUT:</strong> {{ v.rut }}</p>
+        <p><strong>Motivo:</strong> {{ v.motivo_visita }}</p>
+        <p><strong>Entrada:</strong> {{ v.hora_entrada }}</p>
+        <p><strong>Salida:</strong> {{ v.hora_salida || '—' }}</p>
+        <p><strong>Fecha:</strong> {{ v.fecha }}</p>
+      </div>
+    </div>
 
-<div *ngFor="let v of visitas">
-  <h2>{{ v.nombre }}</h2>
-  <p> RUT: {{ v.rut }}</p>
-  <p> Motivo: {{ v.motivo_visita }}</p>
-  <p> Entrada: {{ v.hora_entrada }}</p>
-  <p> Salida: {{ v.hora_salida }}</p>
-  <p> Fecha: {{ v.fecha }}</p>
-  <hr>
-  <p></p>
+  </div>
 </div>
-
