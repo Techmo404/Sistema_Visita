@@ -36,5 +36,4 @@ export class ListaVisitasComponent implements OnInit {
       console.error(err);
     }
   });
-
-}}
+  }}
