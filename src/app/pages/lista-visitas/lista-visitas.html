@@ -1,51 +1,27 @@
-<!-- HEADER PROFESIONAL -->
+<!-- src/app/pages/lista-visitas/lista-visitas.html -->
 <header class="header-container">
   <div class="header-content">
     <img src="https://i.pinimg.com/1200x/d0/9e/55/d09e55b834a5a146230225e6025b8ffc.jpg" alt="Logo Hospital" class="logo-hospital">
-
     <h1 class="titulo">Sistema de Visitas</h1>
+    <div style="margin-left:auto;">
+      <button class="btn" (click)="irCrear()">+ Nueva Visita</button>
+    </div>
   </div>
 </header>
 
 <div class="pagina-wrapper">
-
-  <!-- FILTROS -->
   <div class="filtros-container">
-
-    <input type="text"
-           placeholder="Buscar por nombre..."
-           [(ngModel)]="filtroNombre"
-           (input)="aplicarFiltros()"
-           class="input-field">
-
-    <input type="text"
-           placeholder="Buscar por RUT..."
-           [(ngModel)]="filtroRut"
-           (input)="aplicarFiltros()"
-           class="input-field">
-
-    <input type="date"
-           [(ngModel)]="filtroFecha"
-           (change)="aplicarFiltros()"
-           class="input-field">
-
-    <button class="btn-grafico" (click)="toggleGrafico()">
-      📊 Ver gráfico semanal
-    </button>
+    <input type="text" placeholder="Buscar por nombre..." [(ngModel)]="filtroNombre" (input)="aplicarFiltros()" class="input-field">
+    <input type="text" placeholder="Buscar por RUT..." [(ngModel)]="filtroRut" (input)="aplicarFiltros()" class="input-field">
+    <input type="date" [(ngModel)]="filtroFecha" (change)="aplicarFiltros()" class="input-field">
+    <button class="btn-grafico" (click)="toggleGrafico()">📊 Ver gráfico semanal</button>
   </div>
 
-  <!-- GRAFICO -->
-  <div *ngIf="mostrarGrafico" class="grafico-box">
-    <canvas id="graficoSemanal"></canvas>
-  </div>
+  <div *ngIf="mostrarGrafico" class="grafico-box"><canvas id="graficoSemanal"></canvas></div>
 
-  <!-- LISTA -->
   <div class="visitas-container">
     <div class="visitas-box">
-
-      <div *ngIf="visitasFiltradas.length === 0" class="empty-msg">
-        No se encontraron visitas.
-      </div>
+      <div *ngIf="visitasFiltradas.length === 0" class="empty-msg">No se encontraron visitas.</div>
 
       <div class="visita-card" *ngFor="let v of visitasFiltradas">
         <h3>{{ v.nombre }}</h3>
@@ -57,9 +33,12 @@
           <p><strong>Salida:</strong> {{ v.hora_salida }}</p>
           <p><strong>Fecha:</strong> {{ v.fecha }}</p>
         </div>
+
+        <div class="acciones">
+          <button (click)="irEditar(v)">✏️ Editar</button>
+          <button (click)="eliminarVisita(v.id)">🗑️ Eliminar</button>
+        </div>
       </div>
     </div>
   </div>
-
-</div> <!-- FIN WRAPPER -->
-
+</div>

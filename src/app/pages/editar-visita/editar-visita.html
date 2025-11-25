@@ -1,0 +1,34 @@
+<!-- src/app/pages/editar-visita/editar-visita.html -->
+<div class="form-page" *ngIf="visita">
+  <h2>Editar Visita</h2>
+
+  <form (ngSubmit)="guardar()">
+    <label>Nombre</label>
+    <input type="text" [(ngModel)]="visita.nombre" name="nombre" required />
+
+    <label>RUT</label>
+    <input type="text" [(ngModel)]="visita.rut" name="rut" required />
+
+    <label>Motivo</label>
+    <textarea [(ngModel)]="visita.motivo_visita" name="motivo_visita"></textarea>
+
+    <div class="h-row">
+      <div>
+        <label>Hora entrada</label>
+        <input type="time" [(ngModel)]="visita.hora_entrada" name="hora_entrada" />
+      </div>
+      <div>
+        <label>Hora salida</label>
+        <input type="time" [(ngModel)]="visita.hora_salida" name="hora_salida" />
+      </div>
+    </div>
+
+    <label>Fecha</label>
+    <input type="date" [(ngModel)]="visita.fecha" name="fecha" />
+
+    <div class="actions">
+      <button type="submit" class="btn">Guardar</button>
+      <button type="button" class="btn cancel" (click)="cancelar()">Cancelar</button>
+    </div>
+  </form>
+</div>
