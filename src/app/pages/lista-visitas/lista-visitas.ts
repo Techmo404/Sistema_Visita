@@ -25,7 +25,7 @@ export class ListaVisitasComponent implements OnInit {
     next: (data) => {
       console.log("BACKEND:", data);
 
-      // FIX: El backend devuelve un array directo
+     
       this.visitas = data;
 
       this.cdr.detectChanges();
@@ -36,6 +36,5 @@ export class ListaVisitasComponent implements OnInit {
       console.error(err);
     }
   });
-}
 
 }
