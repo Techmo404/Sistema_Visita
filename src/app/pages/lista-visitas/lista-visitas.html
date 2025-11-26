@@ -10,15 +10,43 @@
 </header>
 
 <div class="pagina-wrapper">
-  <div class="filtros-container">
-    <input type="text" placeholder="Buscar por nombre..." [(ngModel)]="filtroNombre" (input)="aplicarFiltros()" class="input-field">
-    <input type="text" placeholder="Buscar por RUT..." [(ngModel)]="filtroRut" (input)="aplicarFiltros()" class="input-field">
-    <input type="date" [(ngModel)]="filtroFecha" (change)="aplicarFiltros()" class="input-field">
-    <input type="text" [(ngModel)]="filtroArea" placeholder="Buscar por área" (input)="aplicarFiltros()">
-    <input type="text" [(ngModel)]="filtroDoctor" placeholder="Buscar por doctor" (input)="aplicarFiltros()">
 
+  <div class="filtros-panel">
+
+    <div class="filtros-row">
+
+      <input type="text"
+            placeholder="Buscar por nombre..."
+            [(ngModel)]="filtroNombre"
+            (input)="aplicarFiltros()" />
+
+      <input type="text"
+            placeholder="Buscar por RUT..."
+            [(ngModel)]="filtroRut"
+            (input)="aplicarFiltros()" />
+
+      <input type="date"
+            [(ngModel)]="filtroFecha"
+            (change)="aplicarFiltros()" />
+
+      <input type="text"
+            placeholder="Buscar por área..."
+            [(ngModel)]="filtroArea"
+            (input)="aplicarFiltros()" />
+
+      <input type="text"
+            placeholder="Buscar por doctor..."
+            [(ngModel)]="filtroDoctor"
+            (input)="aplicarFiltros()" />
+
+    </div>
+
+  <div class="filtros-botonera">
     <button class="btn-grafico" (click)="toggleGrafico()">📊 Ver gráfico semanal</button>
   </div>
+
+</div>
+
 
   <div *ngIf="mostrarGrafico" class="grafico-box"><canvas id="graficoSemanal"></canvas></div>
 
@@ -30,13 +58,14 @@
         <h3>{{ v.nombre }}</h3>
 
         <div class="visita-info">
-          <p><strong>RUT:</strong> {{ v.rut }}</p>
-          <p><strong>Motivo:</strong> {{ v.motivo_visita }}</p>
-          <p><strong>Entrada:</strong> {{ v.hora_entrada }}</p>
-          <p><strong>Salida:</strong> {{ v.hora_salida }}</p>
-          <p><strong>Fecha:</strong> {{ v.fecha }}</p>
-          <td>{{ v.area }}</td>
-          <td>{{ v.doctor }}</td>
+            <p><strong>RUT:</strong> {{ v.rut }}</p>
+            <p><strong>Motivo:</strong> {{ v.motivo_visita }}</p>
+            <p><strong>Entrada:</strong> {{ v.hora_entrada }}</p>
+            <p><strong>Salida:</strong> {{ v.hora_salida }}</p>
+            <p><strong>Fecha:</strong> {{ v.fecha }}</p>
+
+            <p><strong>Área:</strong> {{ v.area ? v.area : 'No asignada' }}</p>
+            <p><strong>Doctor:</strong> {{ v.doctor ? v.doctor : 'Sin asignar' }}</p>
 
         </div>
 

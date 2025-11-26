@@ -1,16 +1,90 @@
-/* src/app/pages/crear-visita/crear-visita.css */
+/* ============================
+   CREAR VISITA
+   ============================ */
+
 .form-page {
-  max-width: 720px;
-  margin: 20px auto;
-  padding: 18px;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  max-width: 650px;
+  margin: 35px auto;
+  padding: 28px 32px;
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.10);
+  border: 1px solid #e3edf8;
 }
-.form-page label { display:block; margin-top:12px; font-weight:600; }
-.form-page input, .form-page textarea { width:100%; padding:8px; margin-top:6px; border-radius:6px; border:1px solid #ddd; }
-.h-row { display:flex; gap:12px; }
-.h-row > div { flex:1; }
-.actions { margin-top:14px; display:flex; gap:8px; }
-.btn { padding:8px 12px; border:none; border-radius:6px; background:#2b6cb0; color:#fff; cursor:pointer; }
-.btn.cancel { background:#999; }
+
+.form-page h2 {
+  margin-top: 0;
+  font-size: 26px;
+  font-weight: 700;
+  color: #1977cc;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.form-page label {
+  display: block;
+  margin-top: 16px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #2c4964;
+}
+
+.form-page input,
+.form-page textarea,
+.form-page select {
+  width: 100%;
+  padding: 12px 14px;
+  margin-top: 6px;
+  border-radius: 10px;
+  border: 1px solid #c7d6ea;
+  font-size: 15px;
+  transition: 0.2s ease;
+  background: #fbfdff;
+}
+
+.form-page input:focus,
+.form-page textarea:focus,
+.form-page select:focus {
+  border-color: #1977cc;
+  box-shadow: 0 0 6px rgba(25, 119, 204, 0.35);
+  outline: none;
+}
+
+.h-row {
+  display: flex;
+  gap: 16px;
+}
+
+.actions {
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.btn {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #1977cc, #0f5e9a);
+  color: #fff;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  transition: 0.25s ease;
+  min-width: 130px;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(25, 119, 204, 0.35);
+}
+
+.btn.cancel {
+  background: #c7d1dd;
+  color: #273b50;
+}
+
+.btn.cancel:hover {
+  background: #b1bcc9;
+}
